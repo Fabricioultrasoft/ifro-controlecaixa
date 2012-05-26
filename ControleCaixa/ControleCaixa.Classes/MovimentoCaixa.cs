@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ControleCaixa.Classes
 {
-    class MovimentoCaixa
+   public class MovimentoCaixa
     {
         #region Atributos
         private DateTime _Data;
@@ -38,12 +38,7 @@ namespace ControleCaixa.Classes
             get { return MovimentacaoItem; }
             set { _MovimetacaoItem = value; }
         }
-        //Atributo Identificador
-        private int _ID;
-        public int ID
-        {
-            get { return _ID; }
-        }
+  
 
         #endregion Fim dos Atributos
 

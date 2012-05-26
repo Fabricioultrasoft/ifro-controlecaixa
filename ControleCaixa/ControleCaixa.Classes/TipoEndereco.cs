@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ControleCaixa.Classes
 {
-    class TipoEndereco
+   public class TipoEndereco : CLASSEPAI
     {
 
         #region Atributos
@@ -16,13 +16,7 @@ namespace ControleCaixa.Classes
             set { _EnderecoTipo = value; }
         }
 
-        //Atributo identificador
-        private int _ID;
-        public int ID
-        {
-            get { return _ID; }
-        }
-        
+
         #endregion Fim dos Atributos
 
         #region Métodos

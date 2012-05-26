@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ControleCaixa.Classes
 {
-    class Endereco
+    public class Endereco : CLASSEPAI
     {
         #region Metodos Construtores
 

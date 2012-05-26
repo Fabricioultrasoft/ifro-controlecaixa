@@ -6,7 +6,7 @@ using System.Text;
 namespace ControleCaixa.Classes
 {
     //Classe Filha da Classe PessoaJuridica
-    class Empresa : PessoaJuridica
+    public class Empresa : PessoaJuridica
     {
         #region Atributos
         private IList<Caixa> _Caixa;

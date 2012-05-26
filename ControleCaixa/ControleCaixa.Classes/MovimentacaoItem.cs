@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ControleCaixa.Classes
 {
-   public class MovimentacaoItem
+   public class MovimentacaoItem : CLASSEPAI
     {
         #region Atributos
         private int _DocumentoNumero;
@@ -43,12 +43,7 @@ namespace ControleCaixa.Classes
             get { return ValorMovimentacao; }
             set { _ValorMovimentacao = value; }
         }
-        //Atributo Identificador
-        private int _ID;
-        public int ID
-        {
-            get { return _ID; }
-        }
+
 
         #endregion Fim dos atributos
 
