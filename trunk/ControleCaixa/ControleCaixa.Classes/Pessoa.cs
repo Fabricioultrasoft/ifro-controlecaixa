@@ -6,7 +6,7 @@ using System.Text;
 namespace ControleCaixa.Classes
 {   
     //Classe Abstrata Pessoa [Classe PAI]
-    public abstract class Pessoa
+    public abstract class Pessoa : CLASSEPAI
     {
         #region Construtor
         public Pessoa(string nome, string telefone, IList<TipoPessoa> tipoPessoa ,IList<Endereco> endereco)
@@ -34,12 +34,7 @@ namespace ControleCaixa.Classes
             set { _Telfone = value; }
         }
         
-        //Atributo Identificador "ID"
-        private int _ID;
-        public int ID
-        { 
-            get { return _ID; } 
-        }
+
 
         //Atributo do tipo lista de TipoPessoa
         private IList<TipoPessoa> _TipoPessoa;

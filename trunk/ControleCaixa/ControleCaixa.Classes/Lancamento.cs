@@ -24,11 +24,7 @@ namespace ControleCaixa.Classes
             set { _Nome = value; }
         }
         //Atributos de identificação 'ID'
-        private int _ID;
-        public int ID 
-        {
-            get { return _ID; }
-        }
+
         #endregion Fim dos Atributos
 
         #region Metodos

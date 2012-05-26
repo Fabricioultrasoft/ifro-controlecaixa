@@ -19,6 +19,8 @@ namespace ControleCaixa.Classes
        private DateTime _DataCriacao;
        public DateTime DataCriacao
        {
+           get { return DataCriacao; }
+           set { _DataCriacao = value; }
        }
     }
 }

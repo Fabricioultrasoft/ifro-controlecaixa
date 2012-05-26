@@ -6,7 +6,7 @@ using System.Text;
 namespace ControleCaixa.Classes
 {
     //Classe Filha da Classe PessoaFisica
-    class Funcionario : PessoaFisica
+   public class Funcionario : PessoaFisica
     {
         #region Atributos
         private string _Matricula;

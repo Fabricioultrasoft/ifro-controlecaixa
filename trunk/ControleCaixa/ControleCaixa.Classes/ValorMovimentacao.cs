@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ControleCaixa.Classes
 {
-    class ValorMovimentacao
+   public class ValorMovimentacao : CLASSEPAI
     {
         #region Atributos
         private double _Valor;

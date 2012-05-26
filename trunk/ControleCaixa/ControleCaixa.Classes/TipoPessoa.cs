@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ControleCaixa.Classes
 {
-    class TipoPessoa
+    public class TipoPessoa : CLASSEPAI
     {
         #region Construtores
 
@@ -18,11 +18,7 @@ namespace ControleCaixa.Classes
             set { _Nome = value; }
         }
         //Atributo Identificador ID
-        private int _ID;
-        public int ID
-        {
-            get { return _ID; }
-        }
+
         #endregion Fim dos Atributos
 
         #region Métodos
