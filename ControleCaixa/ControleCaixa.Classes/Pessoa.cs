@@ -9,13 +9,7 @@ namespace ControleCaixa.Classes
     public abstract class Pessoa : CLASSEPAI
     {
        // #region Construtor
-        //public Pessoa(string nome, string telefone, IList<TipoPessoa> tipoPessoa ,IList<Endereco> endereco)
-       // {
-         //   this.Nome = nome;
-           // this.Telefone = telefone;
-            //this.TipoPessoa = tipoPessoa;
-           // this.Endereco = endereco;
-     //   }
+
 
 //        #endregion Fim do Construtor
 
