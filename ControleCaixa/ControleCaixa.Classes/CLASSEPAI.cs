@@ -10,12 +10,12 @@ namespace ControleCaixa.Classes
     //ela definirá o atributo de identificação ID, Data de criação etc
    public abstract class CLASSEPAI
     {
-       private int _ID;
-       public int ID
-       {
-           get { return ID; }
-           set { _ID = value; }
-       }
+        public int _ID;
+        public int ID
+        {
+            get { return _ID; }
+        }
+
        private DateTime _DataCriacao;
        public DateTime DataCriacao
        {

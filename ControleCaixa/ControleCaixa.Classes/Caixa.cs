@@ -6,7 +6,7 @@ using System.IO;
 
 namespace ControleCaixa.Classes
 {
-    class Caixa
+    public class Caixa : CLASSEPAI
     {
         #region Atributos
         private string _Numero;
@@ -24,7 +24,22 @@ namespace ControleCaixa.Classes
 
         #endregion Fim dos Atributos
 
+
+
         #region Métodos
+        //metodo para adicionar a identificação [ID] aos dados
+        public static void Inserir(List<Caixa> lista, Caixa Caix)
+        {
+            Caix._ID = lista.Count == 0 ? 1 : lista.Max(p => p.ID) + 1;
+            lista.Add(Caix);
+        }
+
+        public static void Inserir(List<Caixa> lista, Caixa Caix, int ID)
+        {
+            Caix._ID = ID;
+            lista.Add(Caix);
+        }
+
         //Este método Cria o Arquivo de Base de Dados do Caixa
         private static void CriaBase(string BaseCaixa)
         {
