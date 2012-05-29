@@ -16,11 +16,11 @@ namespace ControleCaixa.Classes
             get { return _ID; }
         }
 
-       private DateTime _DataCriacao;
+       private DateTime _DataCriacao = DateTime.Now;
        public DateTime DataCriacao
        {
-           get { return DataCriacao; }
-           set { _DataCriacao = value; }
+           get { return _DataCriacao; }
+           
        }
     }
 }

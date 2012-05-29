@@ -6,7 +6,7 @@ using System.Text;
 namespace ControleCaixa.Classes
 {   
     //Classe Abstrata Pessoa [Classe PAI]
-    public abstract class Pessoa : CLASSEPAI
+    public class Pessoa : CLASSEPAI
     {
        // #region Construtor
 
