@@ -20,11 +20,11 @@ namespace ControleCaixa.Classes
         #endregion Fim dos Atributos
 
         #region Métodos
-        public static void Inserir();
-        public static void Salvar();
-        public static void Editar();
-        public static void Excluir();
-        public static void Pesquisar();
+        public static void Inserir() { }
+        public static void Salvar() { }
+        public static void Editar() { }
+        public static void Excluir() { }
+        public static void Pesquisar() { }
         #endregion Fim dos Métodos
     }
 }

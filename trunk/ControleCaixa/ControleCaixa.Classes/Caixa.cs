@@ -54,8 +54,8 @@ namespace ControleCaixa.Classes
             }
 
         }
-        
-        public static void Inserir();
+
+        public static void Inserir() { }
 
         //Este Metodo escreve os dados no aruivo de dados BaseCaixa.txt
         public static void Salvar(IList<Caixa> listaCaixa, string BaseCaixa)
@@ -79,9 +79,9 @@ namespace ControleCaixa.Classes
             { Console.WriteLine("Base de Dados nao Encontrada"); }
         }
 
-        public static void Editar();
-        public static void Excluir();
-        public static void Pesquisar();
+        public static void Editar() { }
+        public static void Excluir() { }
+        public static void Pesquisar() { }
         #endregion Fim dos Métodos
 
     }
