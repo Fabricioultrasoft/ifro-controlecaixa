@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ControleCaixa.Classes
 {
-    class FormaPagamento
+   public class FormaPagamento : CLASSEPAI
     {
         #region Atributos
         private string _Descricao;
@@ -15,11 +15,11 @@ namespace ControleCaixa.Classes
             set { _Descricao = value; }
         }
         #endregion Fim dos Atributos
-        public static void Inserir();
-        public static void Salvar();
-        public static void Editar();
-        public static void Excluir();
-        public static void Pesquisar();
+        public static void Inserir() { }
+        public static void Salvar() { }
+        public static void Editar() { }
+        public static void Excluir() { }
+        public static void Pesquisar() { }
         #region Métodos
 
 

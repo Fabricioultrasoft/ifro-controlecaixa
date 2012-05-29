@@ -8,16 +8,16 @@ namespace ControleCaixa.Classes
     //Classe Abstrata Pessoa [Classe PAI]
     public abstract class Pessoa : CLASSEPAI
     {
-        #region Construtor
-        public Pessoa(string nome, string telefone, IList<TipoPessoa> tipoPessoa ,IList<Endereco> endereco)
-        {
-            this.Nome = nome;
-            this.Telefone = telefone;
-            this.TipoPessoa = tipoPessoa;
-            this.Endereco = endereco;
-        }
+       // #region Construtor
+        //public Pessoa(string nome, string telefone, IList<TipoPessoa> tipoPessoa ,IList<Endereco> endereco)
+       // {
+         //   this.Nome = nome;
+           // this.Telefone = telefone;
+            //this.TipoPessoa = tipoPessoa;
+           // this.Endereco = endereco;
+     //   }
 
-        #endregion Fim do Construtor
+//        #endregion Fim do Construtor
 
         #region Atributos
         private string _Nome;
@@ -53,11 +53,11 @@ namespace ControleCaixa.Classes
         #endregion Fim dos Atributos
 
         #region Métodos
-        public static void Inserir();
-        public static void Salvar();
-        public static void Editar();
-        public static void Excluir();
-        public static void Pesquisar();
+        public static void Inserir() { }
+        public static void Salvar() { }
+        public static void Editar() { }
+        public static void Excluir() { }
+        public static void Pesquisar() { }
         #endregion Fim dos Métodos
     }
 }
