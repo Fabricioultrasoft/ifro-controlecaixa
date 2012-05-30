@@ -6,9 +6,22 @@ using System.Text;
 namespace ControleCaixa.Classes
 {
    public class MovimentacaoItem : CLASSEPAI
-    {
-        #region Atributos
-        private int _DocumentoNumero;
+   {
+
+       #region Construtores
+
+       public MovimentacaoItem() { }
+       public MovimentacaoItem(string id, string documento, string descricao, string tipoMovimentacao, 
+                                string lancamento, string pessoa, string valor)
+       {
+           
+       }
+
+
+       #endregion Fim construtores
+
+       #region Atributos
+       private int _DocumentoNumero;
         public int DocumentoNumero
         {
             get { return DocumentoNumero; }

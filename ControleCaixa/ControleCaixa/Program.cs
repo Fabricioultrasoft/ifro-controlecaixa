@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ControleCaixa.Classes;
 using System.IO;
+using System.Collections;
 
 
 
@@ -13,24 +14,32 @@ namespace ControleCaixa
     {
         #region Atributos Da Classe Lancamento
         static List<Lancamento> listaLamcamentos;
-        const string BaseDadosLancamento = @"C:\Users\Tiago\Documents\Escola\Desnvolvimento de Sistemas\Projeto_Final_Da_Materia\BaseDadosLancamento.txt";
+        const string BaseDadosLancamento = @"C:\BaseDadosLancamento.txt";
         #endregion Fim dos Atributos de Lancamento
 
         #region Atributos da Classe Empresa
         static List<Empresa> listaEmpresa;
-        const string BaseDadosEmpresa = @"C:\Users\Tiago\Documents\Escola\Desnvolvimento de Sistemas\Projeto_Final_Da_Materia\BaseDadosEmpresa.txt";
+        const string BaseDadosEmpresa = @"C:\BaseDadosEmpresa.txt";
         #endregion
+
 
         #region Atributos da Classe TipoEndereço
         static List<TipoEndereco> listaTipoEndereco;
-        const string BaseDadosTipoEndereco = @"C:\Users\Tiago\Documents\Escola\Desnvolvimento de Sistemas\Projeto_Final_Da_Materia\BaseDadosTipoEndereco.txt";
+        const string BaseDadosTipoEndereco = @"C:\BaseDadosTipoEndereco.txt";
         #endregion 
+
+        #region Atributos da Classe Endereço
+        static List<Endereco> listaEndereco;
+        const string BaseDadosEndereco = @"C:\BaseDadosEndereco.txt";
+
+        #endregion
 
         //Executa os Metodos do programa
         static void Main(string[] args)
         {
            // ManipulaLancameto();
-            ManipulaTipoEndereco();
+           // ManipulaTipoEndereco();
+            ManipulaEdereco();
            
         }
         /***********************************************************************************************
@@ -128,9 +137,9 @@ namespace ControleCaixa
         }
         #endregion
 
-        /***********************************************************************************************************
+        /*************************************************************************************************
          *                                          TIPO ENDEREÇO
-         * ********************************************************************************************************/
+         * **********************************************************************************************/
         #region Método de Manipulaçãdo dos Tipos De Endereços
 
         public static void ManipulaTipoEndereco()
@@ -177,6 +186,89 @@ namespace ControleCaixa
         }
         #endregion Tipos de Endereços
 
+        /*************************************************************************************************
+         *                                          ENDEREÇO
+         * **********************************************************************************************/
+        #region Método de Manipulação de Endereços
+
+        public static void ManipulaEdereco()
+        {
+            Console.WriteLine("\nBusca dos Dados na Base de Dados TXT ");
+            #region Busca de Dados de Endereços na base de Dados
+            listaEndereco = Endereco.CarregaEndereco(BaseDadosEndereco);
+            #endregion Fim de Buscas de dados nas Empresas
+
+            #region Mostra os Dados dos Endereços
+
+            foreach (Endereco End in listaEndereco)
+            {
+                Console.WriteLine("\n\n Edereco " + End.ID);
+                Console.WriteLine("\n Logradouro : {0} " + "\nNumero : {1} " + "\nBairro : {2} " + "\nCidade : {3} " + "\nEstado : {4}" + "\nCEP : {6} " + "\nData de Criacao : {7} " + "\nTipo de Endereco : {8} ",
+                   End.Logradouro, End.Numero, End.Bairro, End.Cidade, End.Estado, End.CEP, End.DataCriacao, End.TipoEndereco);
+            }
+
+            #endregion
+            Console.WriteLine("---------------------------------------------------------");
+
+
+            #region Criando os Objetos
+            Endereco Ende = new Endereco();
+            Console.WriteLine("Digite o Logradouro: ");
+            Ende.Logradouro = Console.ReadLine();
+            Console.WriteLine("Digite o Numero: ");
+            Ende.Numero = Console.ReadLine();
+            Console.WriteLine("Digite o Bairro: ");
+            Ende.Bairro = Console.ReadLine();
+            Console.WriteLine("Digite a UF: ");
+            Ende.Estado = Console.ReadLine();
+            Console.WriteLine("Dite o Nome da Cidade: ");
+            Ende.Cidade = Console.ReadLine();
+            Console.WriteLine("Digite o CEP: ");
+            Ende.CEP = Console.ReadLine();
+            Console.WriteLine("Carregando a Lista de Tipos de Endereços \n Digite o Código do tipo de Endereco que quer salvar:");
+ 
+
+            listaTipoEndereco = TipoEndereco.CarregaTipoEndereco(BaseDadosTipoEndereco);
+
+            string opcao = "";
+            foreach (TipoEndereco TipEnd in listaTipoEndereco)
+            {
+                Console.WriteLine("\n\n Tipo de Endereco " + TipEnd.ID);
+                Console.WriteLine("\n Nome : {0} " + "\nDataCriacao : {1} ",
+                   TipEnd.EnderecoTipo, TipEnd.DataCriacao);
+                Console.WriteLine("Digite [S] para adicionar este Tipo [N] para nao : ");
+                opcao = Console.ReadLine();
+                if (opcao == "s")
+                {
+                    List<TipoEndereco> lista = new List<TipoEndereco>();
+                    lista.Add(TipEnd);
+                    Ende.TipoEndereco = lista;
+                }
+                else
+                {
+                    opcao = "";
+                }
+              
+            }
+
+            Endereco.Inserir(listaEndereco, Ende);
+            #endregion
+
+            #region Mostra os objetos da Lista
+            foreach (Endereco End in listaEndereco)
+            {
+                Console.WriteLine("\n\n Endereco " + End.ID);
+                Console.WriteLine("\n Logradouro : {0} " + "\nNumero : {1} " + "\nBairro : {2} " + "\nCidade : {3} " + "\nEstado : {4}" + "\nCEP : {6} " + "\nData de Criacao : {7} " + "\nTipo de Endereco : {6} ",
+                   End.Logradouro, End.Numero, End.Bairro, End.Cidade, End.Estado, End.CEP, End.DataCriacao, End.TipoEndereco);
+            }
+            #endregion
+            #region Método para salva no arquivo
+            Endereco.Salvar(listaEndereco, BaseDadosEndereco);
+            Console.WriteLine("Endereco Cadastrado Com Sucesso");
+            #endregion
+            Console.ReadKey();
+        }
+        #endregion
 
 
     }
