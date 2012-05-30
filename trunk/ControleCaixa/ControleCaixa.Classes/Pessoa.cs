@@ -17,7 +17,7 @@ namespace ControleCaixa.Classes
         private string _Nome;
         public string Nome
         {
-            get { return Nome; }
+            get { return _Nome; }
             set { _Nome = value; }
         }
 
@@ -47,11 +47,7 @@ namespace ControleCaixa.Classes
         #endregion Fim dos Atributos
 
         #region Métodos
-        public static void Inserir() { }
-        public static void Salvar() { }
-        public static void Editar() { }
-        public static void Excluir() { }
-        public static void Pesquisar() { }
+
         #endregion Fim dos Métodos
     }
 }

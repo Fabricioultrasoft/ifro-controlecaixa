@@ -12,25 +12,25 @@ namespace ControleCaixa.Classes
         private string _Matricula;
         public string Matricula
         {
-            get { return Matricula; }
+            get { return _Matricula; }
             set { _Matricula = value; }
         }
         private string _Cargo;
         public string Cargo
         {
-            get { return Cargo; }
+            get { return _Cargo; }
             set { _Cargo = value; }
         }
         private DateTime _DataInicio;
         public DateTime DataInicio
         {
-            get { return DataInicio; }
+            get { return _DataInicio; }
             set { _DataInicio = value; }
         }
         private DateTime _DataFim;
         public DateTime DataFim
         {
-            get { return DataFim; }
+            get { return _DataFim; }
             set { _DataFim = value; }
         }
         //Empresa do Funcionario
