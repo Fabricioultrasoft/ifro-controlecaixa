@@ -10,12 +10,25 @@ namespace ControleCaixa.Classes
     {
         #region Metodos Construtores
         public Endereco() { }
-        public Endereco( string id, string logradouro, string numero, string bairro, 
+        public Endereco(string id, string logradouro, string numero, string bairro,
                          string cidade, string estado, string cep, string dataCriacao)
         {
-            
+            this._ID = Convert.ToInt32(id);
+            this.Logradouro = logradouro;
+            this.Numero = numero;
+            this.Bairro = bairro;
+            this.Cidade = cidade;
+            this.Estado = estado;
+            this.CEP = cep;
+            this.DataCriacao = Convert.ToDateTime(dataCriacao);
             
         }
+      //  public Endereco (List<TipoEndereco> TpEndereco)
+       // {
+       //     this.TipoEndereco = TpEndereco;
+     //   }
+
+
         #endregion Fim dos Métodos Construtores
 
 
@@ -79,7 +92,7 @@ namespace ControleCaixa.Classes
             End._ID = ID;
             lista.Add(End);
         }
-        public static void Salvar(List<Endereco> listaEndereco, string Base)
+        public static void Salvar(List<Endereco> listaEndereco, string Base, string baseTipo)
         {
 
             if (!File.Exists(Base))
@@ -88,14 +101,20 @@ namespace ControleCaixa.Classes
             try
             {
                 StreamWriter stream = new StreamWriter(Base);
-
+                StreamWriter stream2 = new StreamWriter(baseTipo);
                 foreach (Endereco End in listaEndereco)
                 {
 
-                    stream.WriteLine(End.ID + ";" + End.Logradouro + ";" + End.Numero + ";" + End.Bairro + ";" + End.Cidade + ";" + End.Estado + ";" + End.CEP +";" + Convert.ToString(End.DataCriacao) + ";" + End.TipoEndereco);
+                    stream.WriteLine(End.ID + ";" + End.Logradouro + ";" + End.Numero + ";" + End.Bairro + ";" + End.Cidade + ";" + End.Estado + ";" + End.CEP + ";" + Convert.ToString(End.DataCriacao));
 
+                    foreach (TipoEndereco TipEnd in End.TipoEndereco)
+                    {
+
+                        stream2.WriteLine(TipEnd.ID + ";" + TipEnd.EnderecoTipo + ";" + Convert.ToString(TipEnd.DataCriacao) + ";" + End.ID);
+                    }
                 }
                 stream.Close();
+                stream2.Close();
             }
             catch
             {
@@ -106,7 +125,7 @@ namespace ControleCaixa.Classes
         #endregion Fim Métodos
 
         #region Métodos Extras
-        public static List<Endereco> CarregaEndereco(string Base)
+        public static List<Endereco> CarregaEndereco(string Base, string baseTipo)
         {
             if (!File.Exists(Base))
                 CriaBase(Base);
@@ -117,11 +136,29 @@ namespace ControleCaixa.Classes
             {
                 StreamReader stream = new StreamReader(Base);
 
+                //lê o arquivo do endereço
                 string linha = null;
                 while ((linha = stream.ReadLine()) != null)
                 {
                     string[] atrib = linha.Split(';');
                     Endereco Ender = new Endereco(atrib[0], atrib[1], atrib[2], atrib[3], atrib[4], atrib[5], atrib[6], atrib[7]);
+                    
+                    //lê o arquivo que armazena o codigo do Endereço e o Valores do tipo endereço [arquivo de relacionamento entre as classes Endereco e TipoEndereco]
+                    StreamReader stream2 = new StreamReader(baseTipo); 
+                   
+                    string linhatipoEnder = null;
+                    while ((linhatipoEnder = stream2.ReadLine()) != null)
+                    {
+                        string[] atribt = linha.Split(';');
+                        if (atribt[0] == Ender.ID.ToString())
+                        {
+                            if (Ender.TipoEndereco == null)
+                                Ender.TipoEndereco = new List<TipoEndereco>();
+                            Ender.TipoEndereco.Add(new TipoEndereco(atribt[0], atribt[1], atribt[7]));
+                        }
+                    }
+                    stream2.Close();
+
                     Endereco.Inserir(lista, Ender, Convert.ToInt32(atrib[0]));
                 }
                 stream.Close();

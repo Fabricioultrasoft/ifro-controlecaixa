@@ -31,15 +31,16 @@ namespace ControleCaixa
         #region Atributos da Classe Endereço
         static List<Endereco> listaEndereco;
         const string BaseDadosEndereco = @"C:\BaseDadosEndereco.txt";
-
+        const string BaseEndereco_Tipo = @"C:\BaseDadosEndereco_Tipo.txt";
+        
         #endregion
 
         //Executa os Metodos do programa
         static void Main(string[] args)
         {
-           // ManipulaLancameto();
-           // ManipulaTipoEndereco();
-            ManipulaEdereco();
+          // ManipulaLancameto();
+          // ManipulaTipoEndereco();
+           ManipulaEdereco();
            
         }
         /***********************************************************************************************
@@ -195,7 +196,7 @@ namespace ControleCaixa
         {
             Console.WriteLine("\nBusca dos Dados na Base de Dados TXT ");
             #region Busca de Dados de Endereços na base de Dados
-            listaEndereco = Endereco.CarregaEndereco(BaseDadosEndereco);
+            listaEndereco = Endereco.CarregaEndereco(BaseDadosEndereco, BaseEndereco_Tipo);
             #endregion Fim de Buscas de dados nas Empresas
 
             #region Mostra os Dados dos Endereços
@@ -203,8 +204,15 @@ namespace ControleCaixa
             foreach (Endereco End in listaEndereco)
             {
                 Console.WriteLine("\n\n Edereco " + End.ID);
-                Console.WriteLine("\n Logradouro : {0} " + "\nNumero : {1} " + "\nBairro : {2} " + "\nCidade : {3} " + "\nEstado : {4}" + "\nCEP : {6} " + "\nData de Criacao : {7} " + "\nTipo de Endereco : {8} ",
+                Console.WriteLine("\n Logradouro : {0} " + "\nNumero : {1} " + "\nBairro : {2} " + "\nCidade : {3} " + "\nEstado : {4}" + "\nCEP : {5} " + "\nData de Criacao : {6} ",
                    End.Logradouro, End.Numero, End.Bairro, End.Cidade, End.Estado, End.CEP, End.DataCriacao, End.TipoEndereco);
+
+                foreach (TipoEndereco x in End.TipoEndereco)
+                {
+                    Console.WriteLine(x.ID + x.EnderecoTipo + x.DataCriacao);
+                }
+
+                
             }
 
             #endregion
@@ -258,12 +266,17 @@ namespace ControleCaixa
             foreach (Endereco End in listaEndereco)
             {
                 Console.WriteLine("\n\n Endereco " + End.ID);
-                Console.WriteLine("\n Logradouro : {0} " + "\nNumero : {1} " + "\nBairro : {2} " + "\nCidade : {3} " + "\nEstado : {4}" + "\nCEP : {6} " + "\nData de Criacao : {7} " + "\nTipo de Endereco : {6} ",
-                   End.Logradouro, End.Numero, End.Bairro, End.Cidade, End.Estado, End.CEP, End.DataCriacao, End.TipoEndereco);
+                Console.WriteLine("\n Logradouro : {0} " + "\nNumero : {1} " + "\nBairro : {2} " + "\nCidade : {3} " + "\nEstado : {4}" + "\nCEP : {5} " + "\nData de Criacao : {6} " ,
+                   End.Logradouro, End.Numero, End.Bairro, End.Cidade, End.Estado, End.CEP, End.DataCriacao);
+                //mostra os itens do TipoEndereco
+                foreach (TipoEndereco TipEnd in End.TipoEndereco)
+                {
+                    Console.WriteLine(TipEnd.ID + ";" + TipEnd.EnderecoTipo + ";" + Convert.ToString(TipEnd.DataCriacao) + ";" + End.ID);
+                }
             }
             #endregion
             #region Método para salva no arquivo
-            Endereco.Salvar(listaEndereco, BaseDadosEndereco);
+            Endereco.Salvar(listaEndereco, BaseDadosEndereco, BaseEndereco_Tipo);
             Console.WriteLine("Endereco Cadastrado Com Sucesso");
             #endregion
             Console.ReadKey();
