@@ -14,7 +14,9 @@ namespace ControleCaixa.Classes
 
         public TipoEndereco( string id, string enderecoTipo, string dataCriacao )
         {
+            this._ID = Convert.ToInt32(id);
             this.EnderecoTipo = enderecoTipo;
+            this.DataCriacao = Convert.ToDateTime(dataCriacao);
         } 
         #endregion Fim dos Construtores
 
