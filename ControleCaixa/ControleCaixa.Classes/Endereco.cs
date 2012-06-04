@@ -21,12 +21,12 @@ namespace ControleCaixa.Classes
             this.Estado = estado;
             this.CEP = cep;
             this.DataCriacao = Convert.ToDateTime(dataCriacao);
-            
+
         }
-      //  public Endereco (List<TipoEndereco> TpEndereco)
-       // {
-       //     this.TipoEndereco = TpEndereco;
-     //   }
+        //  public Endereco (List<TipoEndereco> TpEndereco)
+        // {
+        //     this.TipoEndereco = TpEndereco;
+        //   }
 
 
         #endregion Fim dos Métodos Construtores
@@ -125,7 +125,7 @@ namespace ControleCaixa.Classes
         #endregion Fim Métodos
 
         #region Métodos Extras
-        public static List<Endereco> CarregaEndereco(string Base, string baseTipo)
+        public static List<Endereco> CarregaEndereco(string Base, string baseTipo, List<TipoEndereco> listaTipoEndereco)
         {
             if (!File.Exists(Base))
                 CriaBase(Base);
@@ -142,23 +142,22 @@ namespace ControleCaixa.Classes
                 {
                     string[] atrib = linha.Split(';');
                     Endereco Ender = new Endereco(atrib[0], atrib[1], atrib[2], atrib[3], atrib[4], atrib[5], atrib[6], atrib[7]);
-                    
+
                     //lê o arquivo que armazena o codigo do Endereço e o Valores do tipo endereço [arquivo de relacionamento entre as classes Endereco e TipoEndereco]
-                    StreamReader stream2 = new StreamReader(baseTipo); 
-                   
+                    StreamReader stream2 = new StreamReader(baseTipo);
+
                     string linhatipoEnder = null;
                     while ((linhatipoEnder = stream2.ReadLine()) != null)
                     {
-                        string[] atribt = linha.Split(';');
-                        if (atribt[0] == Ender.ID.ToString())
+                        string[] atribt = linhatipoEnder.Split(';');
+                        if (atribt[3] == Ender.ID.ToString())
                         {
                             if (Ender.TipoEndereco == null)
                                 Ender.TipoEndereco = new List<TipoEndereco>();
-                            Ender.TipoEndereco.Add(new TipoEndereco(atribt[0], atribt[1], atribt[7]));
+                            Ender.TipoEndereco.Add(listaTipoEndereco.SingleOrDefault(p => p.ID.ToString() == atribt[0]));
                         }
                     }
                     stream2.Close();
-
                     Endereco.Inserir(lista, Ender, Convert.ToInt32(atrib[0]));
                 }
                 stream.Close();
