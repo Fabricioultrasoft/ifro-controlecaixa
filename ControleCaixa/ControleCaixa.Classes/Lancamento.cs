@@ -71,7 +71,7 @@ namespace ControleCaixa.Classes
         #endregion Fim Métodos
 
         #region Métodos Extras
-        public static List<Lancamento> CarregaLancamento(string Base)
+        public static List<Lancamento> Carrega(string Base)
         {
             if (!File.Exists(Base))
                 CriaBase(Base);

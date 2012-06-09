@@ -19,8 +19,8 @@ namespace ControleCaixa.Classes
         private string _Nome;
         public string Nome
         {
-            get { return Nome; }
-            set { _Nome = value.Replace(";", ""); }
+            get { return _Nome; }
+            set { _Nome = value; }
         }
         #endregion Fim dos Atributos
 
@@ -63,7 +63,7 @@ namespace ControleCaixa.Classes
         #endregion Fim Métodos
 
         #region Métodos Extras
-        public static List<Empresa> CarregaEmpresa(string Base)
+        public static List<Empresa> Carrega(string Base)
         {
             if (!File.Exists(Base))
                 CriaBase(Base);
