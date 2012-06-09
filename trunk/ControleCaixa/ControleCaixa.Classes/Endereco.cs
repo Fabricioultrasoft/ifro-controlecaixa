@@ -125,7 +125,7 @@ namespace ControleCaixa.Classes
         #endregion Fim Métodos
 
         #region Métodos Extras
-        public static List<Endereco> CarregaEndereco(string Base, string baseTipo, List<TipoEndereco> listaTipoEndereco)
+        public static List<Endereco> Carrega(string Base, string baseTipo, List<TipoEndereco> listaTipoEndereco)
         {
             if (!File.Exists(Base))
                 CriaBase(Base);
