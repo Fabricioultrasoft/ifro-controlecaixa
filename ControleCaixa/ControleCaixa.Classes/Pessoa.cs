@@ -5,11 +5,11 @@ using System.Text;
 using System.IO;
 
 namespace ControleCaixa.Classes
-{   
+{
     //Classe Abstrata Pessoa [Classe PAI]
     public class Pessoa : CLASSEPAI
     {
-       #region Construtor
+        #region Construtor
         public Pessoa() { }
         public Pessoa(string id, string nome, string telefone, DateTime dataCriacao)
         {
@@ -19,7 +19,7 @@ namespace ControleCaixa.Classes
             this.DataCriacao = dataCriacao;
         }
 
-    #endregion Fim do Construtor
+        #endregion Fim do Construtor
 
         #region Atributos
         private string _Nome;
@@ -35,12 +35,12 @@ namespace ControleCaixa.Classes
             get { return _Telefone; }
             set { _Telefone = value; }
         }
-        
+
         //Atributo do tipo lista de TipoPessoa
         private IList<TipoPessoa> _TipoPessoa;
         public IList<TipoPessoa> TipoPessoa
         {
-            get {return _TipoPessoa; }
+            get { return _TipoPessoa; }
             set { _TipoPessoa = value; }
         }
         //Atributo do tipo lista de Endereços [Endereco]
@@ -78,12 +78,12 @@ namespace ControleCaixa.Classes
                 foreach (Pessoa Pess in listaPessoa)
                 {
                     //grava os dados da pessoa
-                    stream.WriteLine(Pess.ID + ";" + Pess.Nome +";" + Pess.Telefone + ";" + Convert.ToString(Pess.DataCriacao));
+                    stream.WriteLine(Pess.ID + ";" + Pess.Nome + ";" + Pess.Telefone + ";" + Convert.ToString(Pess.DataCriacao));
 
                     foreach (Endereco End in Pess.Endereco)
                     {
                         //grava os dados do endereço da pessoa
-                        stream2.WriteLine(End.ID + ";" + End.Logradouro + ";" + End.Numero + ";" + End.Bairro + ";" + End.Cidade +  ";" + Pess.ID);
+                        stream2.WriteLine(End.ID + ";" + End.Logradouro + ";" + End.Numero + ";" + End.Bairro + ";" + End.Cidade + ";" + Pess.ID);
                     }
 
                     foreach (TipoPessoa TipPess in Pess.TipoPessoa)
@@ -103,20 +103,14 @@ namespace ControleCaixa.Classes
             }
 
         }
-       
 
-        
+
+
         public static List<Pessoa> Carrega(string Base, string BasePessoa_TipoPessoa, string BasePessoa_Endereco, List<Endereco> listaEndereco, List<TipoPessoa> listaTipoPessoa)
         {
             if (!File.Exists(Base))
                 CriaBase(Base);
-            /*
-            if (!File.Exists(BasePessoa_TipoPessoa))
-                CriaBase(BasePessoa_TipoPessoa);
 
-            if (!File.Exists(BasePessoa_Endereco))
-                CriaBase(BasePessoa_Endereco);
-            */
             List<Pessoa> lista = new List<Pessoa>();
 
             try
@@ -124,6 +118,7 @@ namespace ControleCaixa.Classes
                 StreamReader stream = new StreamReader(Base);
                 StreamReader stream2 = new StreamReader(BasePessoa_TipoPessoa);
                 StreamReader stream3 = new StreamReader(BasePessoa_Endereco);
+
                 //Carega os dados da Pessoa
                 string linhaPessoa = null;
                 while ((linhaPessoa = stream.ReadLine()) != null)
@@ -142,9 +137,7 @@ namespace ControleCaixa.Classes
                                 Pess.Endereco = new List<Endereco>();
                             Pess.Endereco.Add(listaEndereco.SingleOrDefault(p => p.ID.ToString() == atribEndereco[0]));
                         }
-                        
-                        
-                        
+
                         //Carega os dados de TipoPessoa da Pessoa
                         string linhaTipoPessoa = null;
                         while ((linhaTipoPessoa = stream2.ReadLine()) != null)
@@ -156,17 +149,13 @@ namespace ControleCaixa.Classes
                                     Pess.TipoPessoa = new List<TipoPessoa>();
                                 Pess.TipoPessoa.Add(listaTipoPessoa.SingleOrDefault(p => p.ID.ToString() == atribTipEssoa[0]));
                             }
-                           
                         }
-                        stream2.Close();
-                        stream3.Close();           
-                        Pessoa.Inserir(lista, Pess, Convert.ToInt32(atribPessoa[0]));
-                        stream.Close();
-                       
                     }
-                  
+                    Pessoa.Inserir(lista, Pess, Convert.ToInt32(atribPessoa[0]));
                 }
-                
+                stream.Close();
+                stream2.Close();
+                stream3.Close();
             }
             catch
             {

@@ -86,7 +86,7 @@ namespace ControleCaixa.Classes
                     TipoPessoa TipPes = new TipoPessoa(atrib[0], atrib[1], Convert.ToDateTime(atrib[2]));
                     TipoPessoa.Inserir(lista, TipPes, Convert.ToInt32(atrib[0]));
                 }
-                stream.Close();
+               // stream.Close();
             }
             catch
             {

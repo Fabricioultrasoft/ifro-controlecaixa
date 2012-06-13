@@ -57,7 +57,7 @@ namespace ControleCaixa
          //  ManipulaTipoPessoa(); //Funcionando
 
 
-          //  ManipulaPessoa(); // Esta escrevendo nos arquivos de pessoa e os de relacionametos, porém, esta apresentado erros na hora de ler
+            ManipulaPessoa(); // Esta escrevendo nos arquivos de pessoa e os de relacionametos, porém, esta apresentado erros na hora de ler
 
         }
 

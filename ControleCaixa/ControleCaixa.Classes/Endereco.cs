@@ -131,11 +131,10 @@ namespace ControleCaixa.Classes
                 CriaBase(Base);
 
             List<Endereco> lista = new List<Endereco>();
-
             try
             {
                 StreamReader stream = new StreamReader(Base);
-
+                StreamReader stream2 = new StreamReader(baseTipo);
                 //lê o arquivo do endereço
                 string linha = null;
                 while ((linha = stream.ReadLine()) != null)
@@ -144,8 +143,7 @@ namespace ControleCaixa.Classes
                     Endereco Ender = new Endereco(atrib[0], atrib[1], atrib[2], atrib[3], atrib[4], atrib[5], atrib[6], atrib[7]);
 
                     //lê o arquivo que armazena o codigo do Endereço e o Valores do tipo endereço [arquivo de relacionamento entre as classes Endereco e TipoEndereco]
-                    StreamReader stream2 = new StreamReader(baseTipo);
-
+                    
                     string linhatipoEnder = null;
                     while ((linhatipoEnder = stream2.ReadLine()) != null)
                     {
@@ -157,14 +155,17 @@ namespace ControleCaixa.Classes
                             Ender.TipoEndereco.Add(listaTipoEndereco.SingleOrDefault(p => p.ID.ToString() == atribt[0]));
                         }
                     }
-                    stream2.Close();
+                    
                     Endereco.Inserir(lista, Ender, Convert.ToInt32(atrib[0]));
+                    
                 }
                 stream.Close();
+                stream2.Close();
+                
             }
             catch
             {
-                Console.Write("Arquivo da Base de Dados não Encontrado!");
+                Console.Write("Arquivo da Base de Dados não Encontrado//////////!");
             }
             return lista;
         }
